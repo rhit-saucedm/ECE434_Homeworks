@@ -1,50 +1,48 @@
-#!/usr/bin/env python3
-
-import pygame
+import curses
 import sys
+from curses import wrapper
 
-from pygame.locals import *
+stdscr = curses.initscr()
 
-pygame.init()
-
-#Screen Sizing
-screenLength = int(input('What LENGTH do you want (pixels)?: ')) #cast into integer
-screenWidth = int(input('What WIDTH do you want (pixels)?: '))
-screen = pygame.display.set_mode((screenLength,screenWidth))
-
-x = screenLength/2
-y = screenWidth/2
-
-clock = pygame.time.Clock()
-screen.fill((255,255,255))
-
-
-additionalSettings = input('Do you want additional pen settings? (Y/N): ').upper()
-if additionalSettings == 'Y':
-    penSize = int(input('What size pen? (2 is normal): '))
-    penColor = input('What color pen?: ').upper()
-
-while 1:
-    clock.tick(60)
-    if additionalSettings == 'Y': pygame.draw.circle(screen,pygame.Color(penColor),(x,y),penSize)
-    elif additionalSettings == 'N': pygame.draw.circle(screen,(0,0,0),(x,y),2)
-    pygame.display.update()
+def main(stdscr):
+    stdscr.clear()
+    stdscr.keypad(True)
+    stdscr.leaveok(True)
+    stdscr.nodelay(False)
     
-    key = pygame.key.get_pressed()
-    if key[pygame.K_RIGHT]: 
-        x += 1
-    if key[pygame.K_LEFT]: 
-        x -= 1
-    if key[pygame.K_UP]: 
-        y -= 1
-    if key[pygame.K_DOWN]: 
-        y += 1
+    # sets default (X,Y) location of cursor
+    curseX = 0
+    curseY = 0
     
-    
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            screen.fill((255,255,255))
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            sys.exit()
+    while True:
+        window = stdscr.getch()
+
+        if window == curses.KEY_LEFT:       #moves cursor to LEFT
+            curseX -= 1
+        elif window == curses.KEY_RIGHT:    #moves cursor to RIGHT
+            curseX += 1
+        elif window == curses.KEY_UP:       #moves cursor to UP
+            curseY -= 1
+        elif window == curses.KEY_DOWN:     #moves cursor to DOWN
+            curseY += 1
+        
+        #detects boarders to keep curser within terminal
+        if curseX >= curses.COLS:
+            curseX = curses.COLS - 1
+        if curseX <= 0:
+            curseX = 0
+        if curseY >= curses.LINES:
+            curseY = curses.LINES - 1
+        if curseY <= 0:
+            curseY = 0
+        
+        stdscr.move(curseY,curseX)       # moves start to new spot
+        stdscr.addstr(chr(42))           #adds * character to window
+
+        if window == 32: #press SPACE to clear
+            stdscr.clear()
+        
+        if window == 27: #press ESC to leave
+            break
+
+wrapper(main)
