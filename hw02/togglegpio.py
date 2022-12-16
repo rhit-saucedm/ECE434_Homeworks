@@ -1,12 +1,12 @@
+#!/usr/bin/env python3
+
 import Adafruit_BBIO.GPIO as GPIO
-GPIO.setup("P9_12", GPIO.OUT)
+import time
+GPIO_PIN = "P9_12"
+GPIO.setup(GPIO_PIN, GPIO.OUT)
+
 while True:
-    if state == GPIO.HIGH:
-        state = GPIO.LOW
-    else:
-        state = GPIO.HIGH
-    GPIO.output("P9_12", state)
-try:
-    # Code to toggle the pin goes here
-finally:
-    GPIO.cleanup()
+    GPIO.output(GPIO_PIN, GPIO.HIGH)
+    # time.sleep(0.001)
+    GPIO.output(GPIO_PIN, GPIO.LOW)
+    # time.sleep(0.001)
