@@ -24,6 +24,7 @@ def main(stdscr):
     stdscr.keypad(True)
     stdscr.leaveok(True)
     stdscr.nodelay(False)
+    
     # Setup Rotary Encoders
     eQEP1 = '1'
     eQEP2 = '2'
@@ -103,6 +104,5 @@ def main(stdscr):
         
         stdscr.addch(curseY, curseX, "X")
         stdscr.refresh()
-        # time.sleep(0.15)
         
 wrapper(main)

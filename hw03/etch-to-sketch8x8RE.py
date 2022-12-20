@@ -5,12 +5,6 @@ import Adafruit_BBIO.GPIO as GPIO
 import time
 import smbus
 
-eQEP1 = '1'
-eQEP2 = '2'
-
-COUNTERPATH1 = '/dev/bone/counter/'+eQEP1+'/count0'
-COUNTERPATH2 = '/dev/bone/counter/'+eQEP2+'/count0'
-
 bus = smbus.SMBus(2)
 matrix = 0x70
 
@@ -46,12 +40,18 @@ GPIO.setup(b1, GPIO.IN)
 GPIO.setup(b1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # Grid setup
-x = 3
+x = 3     #initilize x and y on grid 
 y = 3
 width = 7
 height = 7
 
 maxCount = '1000000'
+
+eQEP1 = '1'
+eQEP2 = '2'
+
+COUNTERPATH1 = '/dev/bone/counter/'+eQEP1+'/count0'
+COUNTERPATH2 = '/dev/bone/counter/'+eQEP2+'/count0'
 
 # Initalize Left Encoder Position
 l = open(COUNTERPATH2+'/ceiling', 'w')
