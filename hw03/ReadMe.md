@@ -22,3 +22,17 @@ ECE434 - Dr. Yoder
 
 Enjoy!
 
+# hw03 grading
+
+| Points      | Description | | |
+| ----------- | ----------- |-|-|
+|  8/8 | TMP101 
+|  2/2 |   | Documentation | *Please use Mark Down*
+|  5/5 | Etch-a-Sketch
+|  3/3 |   | setup.sh
+|  2/2 |   | Documentation
+| 20/20 | **Total**
+
+*My comments are in italics. --may*
+
+*Include your name in your code.*
