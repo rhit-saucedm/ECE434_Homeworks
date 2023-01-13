@@ -10,19 +10,18 @@ GPIO_OE = 0x134
 GPIO0_offset = 0x44E07000
 GPIO0_size = 0x44E07FFF-GPIO0_offset
 
-LED0 = 1<<15
-LED1 = 1<<17
+LED0 = 1<<28
+LED1 = 1<<28
 
 GPIO1_offset = 0x4804c000
 GPIO1_size = 0x4804cfff-GPIO1_offset
 
 BUTTON1 = 1<<18
-BUTTON0 = 1<<26
+BUTTON0 = 1<<30
 
 GPIO_SETDATAOUT = 0x194
 GPIO_CLEARDATAOUT = 0x190
 GPIO_DATAIN = 0x138
-
 
 with open("/dev/mem", "r+b" ) as h:
   mem0 = mmap(h.fileno(), GPIO0_size, offset=GPIO0_offset)
@@ -60,7 +59,8 @@ try:
         mem1[GPIO_SETDATAOUT:GPIO_SETDATAOUT+4] = struct.pack("<L", LED1)
     else:
         mem1[GPIO_CLEARDATAOUT:GPIO_CLEARDATAOUT+4] = struct.pack("<L", LED1)
-
+    
+    #LED TOGGLE
     # mem0[GPIO_SETDATAOUT:GPIO_SETDATAOUT+4] = struct.pack("<L", LED0)
     # mem0[GPIO_SETDATAOUT:GPIO_SETDATAOUT+4] = struct.pack("<L", LED1)
 
@@ -72,3 +72,4 @@ try:
 
 except KeyboardInterrupt:
   mem0.close()
+  # mem1.close()
