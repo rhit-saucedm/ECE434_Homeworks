@@ -1,0 +1,27 @@
+-include ./path.mak
+CC := $(LINUXarm_GCC)
+CFLAGS := -g
+LiNKER_FLAGS := -lstdc++
+
+.PHONY : all
+all : app.arm
+
+app.arm : app.o
+		$(CC) $(CFLAGS) $(LiNKER_FLAGS) $< -o $@
+
+		@echo; echo $@ successfully created; echo
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $^ -o &@
+
+app.o : app.c
+	/usr/bin/gcc -g -c app.c -o app.o
+
+.PHONY : clean
+clean : 
+	rm -rf app.arm
+	rm -rf app.o
+
+.PHONY : test
+test: 
+	@echo CC = $(CC)
