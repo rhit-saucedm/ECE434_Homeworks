@@ -19,3 +19,17 @@ Load from PREEMPT_RT Module:
 bone$ **cd ~/exercises/linux/modules**
 bone$ **make**
 bone$ **make clean**
+
+# hw06 grading
+
+| Points      | Description | |
+| ----------- | ----------- |-|
+|  2/2 | Project | *IoT Weather Station*
+|  4/5 | Questions | *Mainline is the main kernel tree.*
+|  4/4 | PREEMPT_RT
+|  0/2 | Plots to 500 us | *Only to 400*
+|  5/5 | Plots - Heavy/Light load
+|  2/2 | Extras
+| 17/20 | **Total**
+
+*My comments are in italics. --may*
