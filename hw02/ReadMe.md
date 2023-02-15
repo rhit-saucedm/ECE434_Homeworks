@@ -36,6 +36,7 @@ run togglegpio.py
 2. Run htop and see how much processor you are using.
     85.8%
 3. Present the shell script and Python script results in a table for easy comparison.
+
 | Time | Shell Script | Python |
 | ----------- | ----------- | ----------- |
 | 0.1 | 285ms |  |
@@ -52,3 +53,19 @@ How to run:
     python3 etch-to-sketchPB.py
 
 Enjoy!  
+
+# hw02 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+|  2/2 | Buttons and LEDs 
+|  8/8 | Etch-a-Sketch works
+|      | Measuring a gpio pin on an Oscilloscope 
+|  2/2 | Questions answered
+|  4/4 | Table complete
+|  0/2 | gpiod - *Python times are missing*
+|      | Security
+|  0/1 | ssh port 
+|  0/1 | fail2ban
+| 12/20   | **Total**
+Late:  -6
